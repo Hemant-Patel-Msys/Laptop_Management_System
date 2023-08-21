@@ -63,6 +63,7 @@
       <th scope="col">USER EMAIL</th>
       <th scope="col">COMMENT</th>
       <th scope="col">ACTIONS</th>
+      <th scope="col">Status</th>
     </tr>
   </thead>
   <tbody>
@@ -76,6 +77,17 @@
       <a href="" data-bs-toggle="modal" data-bs-target="#UpdateMachineModal_{{laptop.id}}" class="btn btn-success btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
       <a href="" data-bs-toggle="modal" data-bs-target="#DeleteMachineModal_{{laptop.id}}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
     </td>
+    <td>
+      {% if laptop.status %}
+      <a href="" class="btn btn-success" name="Active">Active</a>
+      {% else %}
+      <a href="" class="btn btn-danger" name="Inactive">Inactive</a>
+      {% endif %}
+
+
+    </td>
+
+
   </tr>
      <!--Update Machine Model-->
     <div class="modal fade" id="UpdateMachineModal_{{laptop.id}}" tabindex="-1" aria-labelledby="AddMachineModalLabel__{{laptop.id}}" aria-hidden="true">
@@ -91,30 +103,38 @@
         <input type="hidden" name="id" value="{{laptop.id}}">
         <div class="">
           <label for="name"> User  Name </label>
-          <input type="text" name="name" class="form-control" value="{{laptop.name}}" id="name" required>
+          <input type="text" name="name" class="form-control" value="{{laptop.name}}"  required>
         </div>
         <br>
         <div class="">
           <label for="email"> User Email </label>
-          <input type="email" name="email" class="form-control"value="{{laptop.email}} id="email" required>
+          <input type="email" name="email" class="form-control" value="{{laptop.email}} " required>
         </div>
         <br>
         <div class="">
           <label for="text"> Comment </label>
-          <input type="text" name="text" class="form-control"value="{{laptop.comment}} id="text" required>
+          <input type="text" name="text" class="form-control"  value="{{laptop.comment}}" required>
         </div>
-      </div>
+        <br>
+        <div class="">
+          <label for="bool"> Status </label>
+          <input type="bool" name="status" class="form-control"  id="bool" value="{{laptop.status}}" required>
+        </div>
+        <br>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary" name="update">Update Machine</button>
       </div>
     </div>
     </form>
+
   </div>
 </div>
 
     <!--For Delete operation -->
-    <div class="modal fade" id="DeleteMachineModal_{{laptop.id}}" tabindex="-1" aria-labelledby="DeleteMachineModalLabel_{{laptop.id}}" aria-hidden="true">
+    <div aria-hidden="true" aria-labelledby="DeleteMachineModalLabel_{{laptop.id}}" class="modal fade"
+         id="DeleteMachineModal_{{laptop.id}}" tabindex="-1">
   <div class="modal-dialog">
     <form action="" method="post">
       {% csrf_token %}
@@ -131,12 +151,10 @@
         <button type="submit" class="btn btn-danger" name="delete">Delete Machine</button>
       </div>
     </div>
+      </div>
     </form>
   </div>
 </div>
-
-
-
     {% endfor %}
   </tbody>
 </table>
@@ -172,11 +190,18 @@
           <input type="email" name="email" class="form-control" id="email" required>
         </div>
         <br>
+
         <div class="">
           <label for="text"> Comment </label>
           <input type="text" name="text" class="form-control" id="text" required>
         </div>
+        <div class="">
+          <label for="status"> Status </label>
+          <input type="text" name="status" class="form-control" id="status" required>
+        </div>
+        <br>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary" name="Add">Add New Machine</button>
