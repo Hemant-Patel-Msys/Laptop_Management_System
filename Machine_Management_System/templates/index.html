@@ -89,6 +89,28 @@
 
 
   </tr>
+       <div aria-hidden="true" aria-labelledby="DeleteMachineModalLabel_{{laptop.id}}" class="modal fade"
+         id="DeleteMachineModal_{{laptop.id}}" tabindex="-1">
+  <div class="modal-dialog">
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="id" value="{{laptop.id}}">
+      <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="">
+          <p> Are you sure want to delete </p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger" name="delete">Delete Machine</button>
+      </div>
+    </div>
+      </div>
+    </form>
+  </div>
+</div>
      <!--Update Machine Model-->
     <div class="modal fade" id="UpdateMachineModal_{{laptop.id}}" tabindex="-1" aria-labelledby="AddMachineModalLabel__{{laptop.id}}" aria-hidden="true">
   <div class="modal-dialog">
@@ -133,28 +155,7 @@
 </div>
 
     <!--For Delete operation -->
-    <div aria-hidden="true" aria-labelledby="DeleteMachineModalLabel_{{laptop.id}}" class="modal fade"
-         id="DeleteMachineModal_{{laptop.id}}" tabindex="-1">
-  <div class="modal-dialog">
-    <form action="" method="post">
-      {% csrf_token %}
-      <input type="hidden" name="id" value="{{laptop.id}}">
-      <div class="modal-content">
 
-      <div class="modal-body">
-        <div class="">
-          <p> Are you sure want to delete </p>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-danger" name="delete">Delete Machine</button>
-      </div>
-    </div>
-      </div>
-    </form>
-  </div>
-</div>
     {% endfor %}
   </tbody>
 </table>

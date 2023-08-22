@@ -32,12 +32,12 @@ def index(request):
             id = request.POST.get('id')
             name = request.POST.get('name')
             email = request.POST.get('email')
-            text = request.POST.get('text')
+            comment = request.POST.get('text')
             status = request.POST.get('status')
             update_laptop = Laptop.objects.get(id=id)
             update_laptop.name = name
             update_laptop.email = email
-            update_laptop.text = text
+            update_laptop.comment = comment
             update_laptop.status = status
             update_laptop.save()
 
@@ -46,6 +46,7 @@ def index(request):
         elif 'delete' in request.POST:
             id = request.POST.get('id')
             Laptop.objects.get(id=id).delete()
+
 
             messages.success(request, 'Student Deleted Successfully')
 
